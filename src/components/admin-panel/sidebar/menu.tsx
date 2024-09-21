@@ -51,7 +51,7 @@ export function Menu({ isOpen }: MenuProps) {
                 <p className="pb-2"></p>
               )}
               {menus.map(
-                ({ href, label, icon: Icon, active, submenus }, index) =>
+                ({ href, label, disabled, icon: Icon, active, submenus }, index) =>
                   submenus.length === 0 ? (
                     <div className="w-full" key={index}>
                       <TooltipProvider disableHoverableContent>
@@ -59,10 +59,13 @@ export function Menu({ isOpen }: MenuProps) {
                           <TooltipTrigger asChild>
                             <Button
                               variant={active ? "secondary" : "ghost"}
-                              className="w-full justify-start h-10 mb-1"
+                              className={cn(
+                                "w-full justify-start h-10 mb-1",
+                                disabled ? "text-gray-300" : ""
+                              )}
                               asChild
                             >
-                              <Link href={href}>
+                              <Link href={href} className={disabled ? "pointer-events-none" : ""}>
                                 <span
                                   className={cn(isOpen === false ? "" : "mr-4")}
                                 >

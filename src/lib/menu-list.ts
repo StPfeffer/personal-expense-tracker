@@ -5,7 +5,8 @@ import {
   TrendingUp,
   CreditCard,
   LayoutGrid,
-  LucideIcon
+  LucideIcon,
+  ChartColumn
 } from "lucide-react";
 
 type Submenu = {
@@ -18,6 +19,7 @@ type Menu = {
   href: string;
   label: string;
   active: boolean;
+  disabled: boolean;
   icon: LucideIcon
   submenus: Submenu[];
 };
@@ -36,7 +38,16 @@ export function getMenuList(pathname: string): Group[] {
           href: "/dashboard",
           label: "Dashboard",
           active: pathname.includes("/dashboard"),
+          disabled: false,
           icon: LayoutGrid,
+          submenus: []
+        },
+        {
+          href: "/insights",
+          label: "Insights",
+          active: pathname.includes("/insights"),
+          disabled: true,
+          icon: ChartColumn,
           submenus: []
         }
       ]
@@ -48,6 +59,7 @@ export function getMenuList(pathname: string): Group[] {
           href: "",
           label: "Transactions",
           active: pathname.includes("/posts"),
+          disabled: false,
           icon: CreditCard,
           submenus: [
             {
@@ -66,6 +78,7 @@ export function getMenuList(pathname: string): Group[] {
           href: "/incomes",
           label: "Incomes",
           active: pathname.includes("/incomes"),
+          disabled: false,
           icon: TrendingUp,
           submenus: []
         },
@@ -73,6 +86,7 @@ export function getMenuList(pathname: string): Group[] {
           href: "/expenses",
           label: "Expenses",
           active: pathname.includes("/expenses"),
+          disabled: false,
           icon: TrendingDown,
           submenus: []
         }
@@ -85,6 +99,7 @@ export function getMenuList(pathname: string): Group[] {
           href: "/account",
           label: "Account",
           active: pathname.includes("/account"),
+          disabled: false,
           icon: Settings,
           submenus: []
         }
