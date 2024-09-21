@@ -1,5 +1,7 @@
 "use client";
 
+import { fetchExpenses } from "@/actions/fetch-expenses";
+import { fetchIncomes } from "@/actions/fetch-incomes";
 import { fetchTransactions } from "@/actions/fetch-transaction";
 import { transactionColumns } from "@/components/admin-panel/dashboard/transactions/transactions-columns"
 import NewTransactionDialog from "@/components/admin-panel/dialog/new-transaction-dialog";
@@ -22,11 +24,29 @@ const Transactions = () => {
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
     return fetchTransactions();
   });
+  const [incomes, setIncomes] = useState<Transaction[]>(() => {
+    return fetchIncomes();
+  });
+  const [expenses, setExpenses] = useState<Transaction[]>(() => {
+    return fetchExpenses();
+  });
 
   const addTransaction = (newTransaction: Transaction) => {
     const updatedTransactions = [...transactions, newTransaction];
     setTransactions(updatedTransactions);
     localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
+
+    const income = newTransaction.category === "income";
+
+    if (income) {
+      const updatedIncomes = [...incomes, newTransaction];
+      setIncomes(updatedIncomes);
+      localStorage.setItem("incomes", JSON.stringify(updatedIncomes));
+    } else {
+      const updatedExpenses = [...expenses, newTransaction];
+      setExpenses(updatedExpenses);
+      localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
+    }
   };
 
   return (

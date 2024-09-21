@@ -18,7 +18,7 @@ export default function AdminNavbar({ title }: NavbarProps) {
       </div>
 
       <div className="ml-auto flex items-center">
-        <ModeToggle className="mr-2 rounded-full w-8 h-8 bg-background" />
+        <ModeToggle className="mr-2 rounded-full w-10 h-10 bg-background" />
 
         <UserNav />
       </div>

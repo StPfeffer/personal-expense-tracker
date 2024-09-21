@@ -22,10 +22,18 @@ import { ContentLayout } from '@/components/admin-panel/layout/content-layout';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { fetchIncomes } from '@/actions/fetch-incomes';
+import { fetchExpenses } from '@/actions/fetch-expenses';
 
 const NewTransactionPage = () => {
-  const [transactions, setTransactions] = useState<Transaction[]> (() => {
+  const [transactions, setTransactions] = useState<Transaction[]>(() => {
     return fetchTransactions();
+  });
+  const [incomes, setIncomes] = useState<Transaction[]>(() => {
+    return fetchIncomes();
+  });
+  const [expenses, setExpenses] = useState<Transaction[]>(() => {
+    return fetchExpenses();
   });
 
   const router = useRouter();
@@ -34,6 +42,18 @@ const NewTransactionPage = () => {
     const updatedTransactions = [...transactions, newTransaction];
     setTransactions(updatedTransactions);
     localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
+
+    const income = newTransaction.category === "income";
+
+    if (income) {
+      const updatedIncomes = [...incomes, newTransaction];
+      setIncomes(updatedIncomes);
+      localStorage.setItem("incomes", JSON.stringify(updatedIncomes));
+    } else {
+      const updatedExpenses = [...expenses, newTransaction];
+      setExpenses(updatedExpenses);
+      localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
+    }
 
     // wtf
     router.refresh();
