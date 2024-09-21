@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header";
 import { DataTableRowActions } from "@/components/data-table/data-table-row-actions";
+import { Switch } from "@/components/ui/switch";
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -122,6 +123,13 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="External ID" />
     ),
+  },
+  {
+    accessorKey: "recurring",
+    header: "Recurring",
+    cell: ({ row }) => {
+      return <Switch disabled checked={row.getValue("recurring")} />
+    }
   },
   {
     id: "actions",
