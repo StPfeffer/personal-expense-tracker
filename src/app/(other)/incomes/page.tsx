@@ -1,10 +1,11 @@
 "use client";
 
+import { fetchIncomes } from "@/actions/fetch-incomes";
 import { fetchTransactions } from "@/actions/fetch-transaction";
-import { transactionColumns } from "@/components/admin-panel/dashboard/transactions/transactions-columns"
-import NewTransactionDialog from "@/components/admin-panel/dialog/new-transaction-dialog";
+import { incomesColumns } from "@/components/admin-panel/dashboard/transactions/incomes-columns";
+import { IncomesDataTable } from "@/components/admin-panel/data-table/incomes-data-table";
+import NewIncomeDialog from "@/components/admin-panel/dialog/new-income-dialog";
 import { ContentLayout } from "@/components/admin-panel/layout/content-layout";
-import { TransactionsDataTable } from "@/components/data-table/data-table"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,23 +15,31 @@ import {
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Transaction } from "@/types/transaction";
+import { Income, Transaction } from "@/types/transaction";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Transactions = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>(() => {
-    return fetchTransactions();
+const Incomes = () => {
+  const [incomes, setIncomes] = useState<Income[]>(() => {
+    return fetchIncomes();
   });
 
-  const addTransaction = (newTransaction: Transaction) => {
-    const updatedTransactions = [...transactions, newTransaction];
+  const [transactions, setTransactions] = useState<Transaction[]>(() => {
+    return fetchTransactions();
+  })
+
+  const addIncome = (newIncomeTransaction: Income) => {
+    const updatedIncomes = [...incomes, newIncomeTransaction];
+    setIncomes(updatedIncomes);
+    localStorage.setItem("incomes", JSON.stringify(updatedIncomes));
+
+    const updatedTransactions = [...transactions, newIncomeTransaction];
     setTransactions(updatedTransactions);
     localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
   };
 
   return (
-    <ContentLayout title="Transactions">
+    <ContentLayout title="Incomes">
       <div className="flex w-full justify-between">
         <Breadcrumb>
           <BreadcrumbList>
@@ -47,7 +56,7 @@ const Transactions = () => {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Transactions</BreadcrumbPage>
+              <BreadcrumbPage>Incomes</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -59,19 +68,19 @@ const Transactions = () => {
         >
           <CardHeader className="flex flex-row items-center">
             <div className="grid gap-2">
-              <CardTitle>Transactions</CardTitle>
+              <CardTitle>Incomes</CardTitle>
               <CardDescription>
-                A detailed overview of all financial activities.
+                A detailed overview of all incomes activities.
               </CardDescription>
             </div>
 
             <div className="ml-auto gap-1">
-              <NewTransactionDialog _onSubmit={addTransaction} />
+              <NewIncomeDialog _onSubmit={addIncome} />
             </div>
           </CardHeader>
 
           <CardContent>
-            <TransactionsDataTable columns={transactionColumns} data={transactions} />
+            <IncomesDataTable columns={incomesColumns} data={incomes} />
           </CardContent>
         </Card>
       </main>
@@ -79,4 +88,4 @@ const Transactions = () => {
   )
 }
 
-export default Transactions;
+export default Incomes;

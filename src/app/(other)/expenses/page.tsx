@@ -1,10 +1,11 @@
 "use client";
 
+import { fetchExpenses } from "@/actions/fetch-expenses";
 import { fetchTransactions } from "@/actions/fetch-transaction";
-import { transactionColumns } from "@/components/admin-panel/dashboard/transactions/transactions-columns"
-import NewTransactionDialog from "@/components/admin-panel/dialog/new-transaction-dialog";
+import { expensesColumns } from "@/components/admin-panel/dashboard/transactions/expenses-columns";
+import { ExpensesDataTable } from "@/components/admin-panel/data-table/expenses-data-table";
+import NewExpenseDialog from "@/components/admin-panel/dialog/new-expense-dialog";
 import { ContentLayout } from "@/components/admin-panel/layout/content-layout";
-import { TransactionsDataTable } from "@/components/data-table/data-table"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,23 +15,31 @@ import {
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Transaction } from "@/types/transaction";
+import { Expense, Transaction } from "@/types/transaction";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Transactions = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>(() => {
-    return fetchTransactions();
+const Expenses = () => {
+  const [expenses, setExpenses] = useState<Expense[]>(() => {
+    return fetchExpenses();
   });
 
-  const addTransaction = (newTransaction: Transaction) => {
-    const updatedTransactions = [...transactions, newTransaction];
+  const [transactions, setTransactions] = useState<Transaction[]>(() => {
+    return fetchTransactions();
+  })
+
+  const addExpense = (newExpenseTransaction: Expense) => {
+    const updatedExpenses = [...expenses, newExpenseTransaction];
+    setExpenses(updatedExpenses);
+    localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
+
+    const updatedTransactions = [...transactions, newExpenseTransaction];
     setTransactions(updatedTransactions);
     localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
   };
 
   return (
-    <ContentLayout title="Transactions">
+    <ContentLayout title="Expenses">
       <div className="flex w-full justify-between">
         <Breadcrumb>
           <BreadcrumbList>
@@ -47,7 +56,7 @@ const Transactions = () => {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Transactions</BreadcrumbPage>
+              <BreadcrumbPage>Expenses</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -59,19 +68,19 @@ const Transactions = () => {
         >
           <CardHeader className="flex flex-row items-center">
             <div className="grid gap-2">
-              <CardTitle>Transactions</CardTitle>
+              <CardTitle>Expenses</CardTitle>
               <CardDescription>
-                A detailed overview of all financial activities.
+                A detailed overview of all expenses activities.
               </CardDescription>
             </div>
 
             <div className="ml-auto gap-1">
-              <NewTransactionDialog _onSubmit={addTransaction} />
+              <NewExpenseDialog _onSubmit={addExpense} />
             </div>
           </CardHeader>
 
           <CardContent>
-            <TransactionsDataTable columns={transactionColumns} data={transactions} />
+            <ExpensesDataTable columns={expensesColumns} data={expenses} />
           </CardContent>
         </Card>
       </main>
@@ -79,4 +88,4 @@ const Transactions = () => {
   )
 }
 
-export default Transactions;
+export default Expenses;

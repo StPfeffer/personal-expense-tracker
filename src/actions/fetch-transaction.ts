@@ -44,27 +44,3 @@ export function fetchTransaction(id: string): Transaction | null {
     return null;
   }
 };
-
-export function fetchIncomes() {
-  try {
-    const transactions = transactionService.listIncomes();
-
-    return transactions as Transaction[];
-  } catch (error) {
-    console.info(error);
-
-    return [];
-  }
-}
-
-export function fetchExpenses() {
-  try {
-    const transactions = transactionService.listExpenses();
-
-    return transactions as Transaction[];
-  } catch (error) {
-    console.info(error);
-
-    return [];
-  }
-}

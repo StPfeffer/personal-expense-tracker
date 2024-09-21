@@ -1,17 +1,25 @@
 import { Banknote, Bitcoin, Circle, CircleDollarSign, CreditCard, DollarSign, Landmark, Receipt, TrendingDown, TrendingUp } from "lucide-react";
 
-export interface Transaction {
+export type Transaction = Income | Expense;
+
+interface BaseTransaction {
   id: number;
   description: string;
   amount: number;
   date: string;
-  type: PaymentType;
-  category: TransactionCategory;
-  paymentMethod?: PaymentMethod;
   notes?: string;
+  category: TransactionCategory;
   createdAt: string;
   updatedAt: string;
   recurring?: boolean;
+}
+
+export interface Income extends BaseTransaction {
+}
+
+export interface Expense extends BaseTransaction {
+  type: PaymentType;
+  paymentMethod?: PaymentMethod;
   transactionId: string | null;
 }
 

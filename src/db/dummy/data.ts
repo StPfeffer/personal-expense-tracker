@@ -20,33 +20,27 @@ export const transactions: Transaction[] = [
     description: "Salary",
     amount: 1500,
     date: "2024-09-15",
-    type: "credit",
     category: "income",
-    paymentMethod: "bank_transfer",
     notes: "Monthly salary",
     createdAt: "2024-09-15T08:00:00Z",
-    updatedAt: "2024-09-15T08:00:00Z",
-    transactionId: "23490862938045"
+    updatedAt: "2024-09-15T08:00:00Z"
   },
   {
     id: 3,
     description: "Freelance work",
     amount: 300,
     date: "2024-09-10",
-    type: "credit",
     category: "income",
-    paymentMethod: "paypal",
     notes: "Web development project",
     createdAt: "2024-09-10T09:00:00Z",
-    updatedAt: "2024-09-10T09:00:00Z",
-    transactionId: "203974893469823"
+    updatedAt: "2024-09-10T09:00:00Z"
   },
   {
     id: 4,
     description: "Rent payment",
     amount: 800,
     date: "2024-09-05",
-    type: "debit",
+    type: "credit",
     category: "expense",
     paymentMethod: "bank_transfer",
     createdAt: "2024-09-05T07:30:00Z",
@@ -84,26 +78,20 @@ export const transactions: Transaction[] = [
     description: "Part-time job",
     amount: 500,
     date: "2024-08-20",
-    type: "credit",
     category: "income",
-    paymentMethod: "bank_transfer",
     notes: "Freelance coding",
     createdAt: "2024-08-20T11:00:00Z",
-    updatedAt: "2024-08-20T11:00:00Z",
-    transactionId: "129874658708"
+    updatedAt: "2024-08-20T11:00:00Z"
   },
   {
     id: 8,
     description: "Dividend income",
     amount: 150,
     date: "2024-08-15",
-    type: "credit",
     category: "income",
-    paymentMethod: "bank_transfer",
     notes: "Stock dividends",
     createdAt: "2024-08-15T09:00:00Z",
-    updatedAt: "2024-08-15T09:00:00Z",
-    transactionId: "1240987456789"
+    updatedAt: "2024-08-15T09:00:00Z"
   },
   {
     id: 9,
@@ -122,7 +110,7 @@ export const transactions: Transaction[] = [
     description: "Car maintenance",
     amount: 300,
     date: "2024-08-05",
-    type: "debit",
+    type: "credit",
     category: "expense",
     paymentMethod: "cash",
     notes: "Oil change and tire rotation",
@@ -135,13 +123,10 @@ export const transactions: Transaction[] = [
     description: "Side project income",
     amount: 400,
     date: "2024-07-30",
-    type: "credit",
     category: "income",
-    paymentMethod: "paypal",
     notes: "Sold a digital product",
     createdAt: "2024-07-30T12:00:00Z",
-    updatedAt: "2024-07-30T12:00:00Z",
-    transactionId: "1298745987623073458"
+    updatedAt: "2024-07-30T12:00:00Z"
   },
   {
     id: 12,

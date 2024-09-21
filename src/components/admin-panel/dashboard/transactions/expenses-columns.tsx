@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table"
-import { PaymentMethod, paymentMethodsDetails, Transaction } from "@/types/transaction";
+import { Expense, PaymentMethod, paymentMethodsDetails } from "@/types/transaction";
 
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge";
@@ -10,7 +10,7 @@ import { DataTableColumnHeader } from "@/components/data-table/data-table-column
 import { DataTableRowActions } from "@/components/data-table/data-table-row-actions";
 import { Switch } from "@/components/ui/switch";
 
-export const transactionColumns: ColumnDef<Transaction>[] = [
+export const expensesColumns: ColumnDef<Expense>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -55,27 +55,21 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     accessorKey: "type",
     header: "Type",
     cell: ({ row }) => {
-      const color = row.getValue("type") === "debit" ? "bg-green-400 dark:bg-green-600" : "";
+      let type: string = row.getValue("type");
+
+      if (!type) {
+        type = "income";
+      }
+
+      const color: Record<string, string> = {
+        income: "bg-blue-400 dark:bg-blue-500",
+        debit: "bg-green-400 dark:bg-green-600",
+        credit: ""
+      }
 
       return (
-        <Badge className={`hover:` + color + " " + color}>
-          {capitalizeFirstLetter(row.getValue("type"))}
-        </Badge>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
-  },
-  {
-    accessorKey: "category",
-    header: "Category",
-    cell: ({ row }) => {
-      const color = row.getValue("category") === "income" ? "bg-green-400 dark:bg-green-600" : "bg-red-700 text-white";
-
-      return (
-        <Badge className={`hover:` + color + " " + color}>
-          {capitalizeFirstLetter(row.getValue("category"))}
+        <Badge className={`hover:` + color[type] + " " + color[type]}>
+          {capitalizeFirstLetter(type)}
         </Badge>
       )
     },
@@ -90,9 +84,20 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
       const method: PaymentMethod = row.getValue("paymentMethod");
       const formattedMethod = paymentMethodsDetails[method];
 
+      if (!formattedMethod) {
+        return <></>
+      }
+
+      let colorMethod = method.replace("_", "");
+
       return (
-        <div className="flex items-center">
-          <formattedMethod.icon className="w-4 h-4 mr-2" />
+        <div className="flex items-center gap-2">
+          <span
+            className="flex h-3 w-3 shrink-0 rounded-sm"
+            style={{
+              backgroundColor: `var(--color-${colorMethod.toString()})`,
+            }}
+          />
           {capitalizeFirstLetter(formattedMethod.label)}
         </div>
       );
@@ -113,9 +118,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
         currency: "USD",
       }).format(amount);
 
-      const color = row.getValue("category") === "income" ? "text-green-600" : "text-red-600";
-
-      return <div className={`text-right font-semibold ` + (color)}>{formatted}</div>
+      return <div className="text-right font-semibold text-red-600">{formatted}</div>
     },
   },
   {

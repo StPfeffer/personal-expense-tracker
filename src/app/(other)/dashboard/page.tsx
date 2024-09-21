@@ -14,9 +14,13 @@ import {
 import Link from "next/link";
 import Dashboard from "@/components/admin-panel/dashboard/dashboard";
 import { fetchRecentTransactions, fetchTransactions } from "@/actions/fetch-transaction";
+import { fetchRecentIncomes } from "@/actions/fetch-incomes";
+import { fetchRecentExpenses } from "@/actions/fetch-expenses";
 
 const DashboardPage = () => {
   const transactions = fetchRecentTransactions();
+  const incomes = fetchRecentIncomes();
+  const expenses = fetchRecentExpenses();
   const cardInfo: CardInfo[] = calculateCardInfo(fetchTransactions());
 
   return (
@@ -35,7 +39,12 @@ const DashboardPage = () => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <Dashboard cardInfo={cardInfo} transactions={transactions} />
+      <Dashboard
+        cardInfo={cardInfo}
+        transactions={transactions}
+        incomes={incomes}
+        expenses={expenses}
+      />
     </ContentLayout>
   );
 }

@@ -1,51 +1,79 @@
 "use client";
 
-import { useEffect, useState } from 'react'
-import CardTotal from './card/card-total';
+import { useEffect, useState } from "react"
+import CardTotal from "./card/card-total";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
-import { DataTable } from '@/components/data-table/data-table';
-import { transactionColumns } from './transactions/columns';
-import { Transaction } from '@/types/transaction';
-import { CardInfo } from './card/types';
-import { initializeTransactions } from '@/actions/fetch-transaction';
-import { DashboardPieChart } from './chart/pie-chart';
-import { DashboardRadarChart } from './chart/radar-chart';
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { TransactionsDataTable } from "@/components/data-table/data-table";
+import { transactionColumns } from "./transactions/transactions-columns";
+import { Expense, Income, Transaction } from "@/types/transaction";
+import { CardInfo } from "./card/types";
+import { initializeTransactions } from "@/actions/fetch-transaction";
+import { DashboardPieChart } from "./chart/pie-chart";
+import { DashboardRadarChart } from "./chart/radar-chart";
+import { initializeIncomes } from "@/actions/fetch-incomes";
+import { initializeExpenses } from "@/actions/fetch-expenses";
 
 interface DashboardProps {
   transactions: Transaction[];
+  incomes: Income[];
+  expenses: Expense[];
   cardInfo: CardInfo[];
 }
 
 const Dashboard = ({
   transactions,
+  incomes,
+  expenses,
   cardInfo
 }: DashboardProps) => {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
+    const loadDataToLocalStorage = (key: string, data: any, message: string) => {
+      const existingData = localStorage.getItem(key);
+      if (!existingData) {
+        localStorage.setItem(key, JSON.stringify(data));
+        console.log(message);
+        return true;
+      } else {
+        console.log(`${key} already exists in localStorage.`);
+        return false;
+      }
+    };
+
     const loadTransactions = async () => {
       transactions = initializeTransactions();
+      incomes = initializeIncomes();
+      expenses = initializeExpenses();
 
-      const existingTransactions = localStorage.getItem('transactions');
+      const newTransactionsLoaded = loadDataToLocalStorage(
+        "transactions",
+        transactions,
+        "Initial transactions loaded."
+      );
+      const newIncomesLoaded = loadDataToLocalStorage(
+        "incomes",
+        incomes,
+        "Initial incomes loaded."
+      );
+      const newExpensesLoaded = loadDataToLocalStorage(
+        "expenses",
+        expenses,
+        "Initial expenses loaded."
+      );
 
-      if (!existingTransactions) {
-        localStorage.setItem('transactions', JSON.stringify(transactions));
-        console.log('Initial transactions loaded.');
+      if (newTransactionsLoaded || newIncomesLoaded || newExpensesLoaded) {
         setShow(true);
-
-        // gambiarra, to com preguiça
         window.location.reload();
-      } else {
-        console.log('Transactions already exist in localStorage.');
       }
     };
 
@@ -90,7 +118,7 @@ const Dashboard = ({
         </CardHeader>
 
         <CardContent>
-          <DataTable columns={transactionColumns} data={transactions} />
+          <TransactionsDataTable columns={transactionColumns} data={transactions} />
         </CardContent>
       </Card>
 

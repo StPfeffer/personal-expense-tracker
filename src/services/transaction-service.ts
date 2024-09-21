@@ -19,12 +19,4 @@ export class TransactionService {
     return transactions;
   }
 
-  listIncomes(): Transaction[] {
-    return this.list().filter(transaction => transaction.category === "income");
-  }
-
-  listExpenses(): Transaction[] {
-    return this.list().filter(transaction => transaction.category === "expense");
-  }
-
 }

@@ -29,21 +29,21 @@ export function DataTableToolbar<TData>({
           className="h-8 w-[245px] lg:w-[350px]"
         />
         <div className="hidden sm:flex">
-          {table.getColumn("category") && (
+          {table.getAllColumns().find(x => x.id === "category") && (
             <DataTableFacetedFilter
               column={table.getColumn("category")}
               title="Category"
               options={categories}
             />
           )}
-          {table.getColumn("type") && (
+          {table.getAllColumns().find(x => x.id === "type") && (
             <DataTableFacetedFilter
               column={table.getColumn("type")}
               title="Type"
               options={types}
             />
           )}
-          {table.getColumn("paymentMethod") && (
+          {table.getAllColumns().find(x => x.id === "paymentMethod") && (
             <DataTableFacetedFilter
               column={table.getColumn("paymentMethod")}
               title="Method"
