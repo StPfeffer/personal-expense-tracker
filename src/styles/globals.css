@@ -41,6 +41,15 @@
       --chart-3: 197 37% 24%;
       --chart-4: 43 74% 66%;
       --chart-5: 27 87% 67%;
+      --color-creditcard: #2a9d90;
+      --color-debitcard: #e76e50;
+      --color-cash: #274754;
+      --color-paypal: #d6b560;
+      --color-banktransfer: #f4a362;
+      --color-crypto: #60a8fb;
+      --color-check: #f17e91;
+      --color-other: #bcbcbd;
+      --color-expenses: #e21d48;
     }
   
     .dark {
@@ -68,6 +77,15 @@
       --chart-3: 30 80% 55%;
       --chart-4: 280 65% 60%;
       --chart-5: 340 75% 55%;
+      --color-creditcard: #2662d9;
+      --color-debitcard: #e23670;
+      --color-cash: #e88c30;
+      --color-paypal: #af57db;
+      --color-banktransfer: #2eb88a;
+      --color-crypto: #60a8fb;
+      --color-check: #f17e91;
+      --color-other: #bcbcbd;
+      --color-expenses: #e21d48;
     }
   }
   

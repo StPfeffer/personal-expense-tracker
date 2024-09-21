@@ -17,6 +17,8 @@ import { transactionColumns } from './transactions/columns';
 import { Transaction } from '@/types/transaction';
 import { CardInfo } from './card/types';
 import { initializeTransactions } from '@/actions/fetch-transaction';
+import { DashboardPieChart } from './chart/pie-chart';
+import { DashboardRadarChart } from './chart/radar-chart';
 
 interface DashboardProps {
   transactions: Transaction[];
@@ -89,6 +91,26 @@ const Dashboard = ({
 
         <CardContent>
           <DataTable columns={transactionColumns} data={transactions} />
+        </CardContent>
+      </Card>
+
+      <Card
+        className="xl:col-span-2" x-chunk="dashboard-01-chunk-4"
+      >
+        <CardHeader className="flex flex-row items-center">
+          <div className="grid gap-2">
+            <CardTitle>Overview</CardTitle>
+            <CardDescription>
+              A detailed overview of your most recent financial activities.
+            </CardDescription>
+          </div>
+
+        </CardHeader>
+        <CardContent>
+          <div className="flex w-full justify-between space-x-5">
+            <DashboardPieChart />
+            <DashboardRadarChart />
+          </div>
         </CardContent>
       </Card>
     </main>
