@@ -13,7 +13,7 @@ export function fetchRecentExpenses(): Expense[] {
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 5);
   } catch (error) {
-    console.info(error);
+    console.error(error);
 
     return [];
   }
@@ -24,7 +24,7 @@ export function fetchExpenses() {
     const expenses = expenseService.list();
     return expenses as [];
   } catch (error) {
-    console.info(error);
+    console.error(error);
 
     return [];
   }
@@ -39,7 +39,9 @@ export function fetchExpense(id: string): Expense | null {
     const expense = expenseService.findById(Number.parseInt(id));
 
     return expense;
-  } catch (error: any) {
+  } catch (error) {
+    console.error(error);
+
     return null;
   }
 };

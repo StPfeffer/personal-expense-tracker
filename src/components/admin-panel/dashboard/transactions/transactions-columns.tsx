@@ -104,7 +104,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
         return <></>
       }
 
-      let colorMethod = method.replace("_", "");
+      const colorMethod = method.replace("_", "");
 
       return (
         <div className="flex items-center gap-2">

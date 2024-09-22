@@ -1,6 +1,5 @@
 import {
   TrendingDown,
-  Users,
   Settings,
   TrendingUp,
   CreditCard,

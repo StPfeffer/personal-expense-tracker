@@ -13,7 +13,7 @@ export function fetchRecentTransactions(): Transaction[] {
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 5);
   } catch (error) {
-    console.info(error);
+    console.error(error);
 
     return [];
   }
@@ -25,7 +25,7 @@ export function fetchTransactions() {
 
     return transactions as [];
   } catch (error) {
-    console.info(error);
+    console.error(error);
 
     return [];
   }
@@ -40,7 +40,9 @@ export function fetchTransaction(id: string): Transaction | null {
     const transaction = transactionService.findById(Number.parseInt(id));
 
     return transaction;
-  } catch (error: any) {
+  } catch (error) {
+    console.error(error);
+
     return null;
   }
 };

@@ -2,7 +2,6 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { HeroCards } from "./hero-cards";
 import Link from "next/link";
-import { ArrowRightIcon } from "lucide-react";
 
 export const Hero = () => {
   return (

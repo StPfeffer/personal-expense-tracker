@@ -127,7 +127,7 @@ const NewExpenseForm = ({
                     <SelectContent>
                       <SelectGroup>
                         <SelectLabel>Types</SelectLabel>
-                        {paymentTypeDetails.map((c, i) => (
+                        {paymentTypeDetails.map((c) => (
                           <SelectItem key={c.key} value={c.key}>
                             <div className="flex items-center">
                               <c.icon className="w-4 h-4 mr-2" />

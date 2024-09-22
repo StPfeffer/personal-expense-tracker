@@ -2,7 +2,7 @@
 
 import { transactions } from "@/db/dummy/data";
 import { isExpense } from "@/lib/utils";
-import { Expense, Transaction } from "@/types/transaction";
+import { Expense } from "@/types/transaction";
 
 // should fetch from an external API in the future
 export class ExpenseService {
@@ -22,4 +22,3 @@ export class ExpenseService {
   }
 
 }
-

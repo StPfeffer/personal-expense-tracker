@@ -4,10 +4,8 @@ import { cn } from "@/lib/utils";
 import { useStore } from "@/hooks/use-store";
 import { useSidebarToggle } from "@/hooks/use-sidebar-toggle";
 import { Sidebar } from "@/components/admin-panel/sidebar/sidebar";
-import { AuthProvider, useAuth } from "@/components/auth/auth-context-provider";
+import { AuthProvider } from "@/components/auth/auth-context-provider";
 import ProtectedRoute from "@/components/auth/protected-route";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function AdminPanelLayout({
   children

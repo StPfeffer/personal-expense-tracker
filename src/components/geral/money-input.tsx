@@ -13,6 +13,7 @@ import { UseFormReturn } from "react-hook-form";
 import { moneyFormatters } from "@/lib/money-formatters";
 
 type TextInputProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<any>;
   name: string;
   label: string;
@@ -26,11 +27,13 @@ export default function MoneyInput(props: TextInputProps) {
     ? moneyFormatter.format(props.form.getValues()[props.name])
     : "";
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [value, setValue] = useReducer((_: any, next: string) => {
     const digits = next.replace(/\D/g, "");
     return moneyFormatter.format(Number(digits) / 100);
   }, initialValue);
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   function handleChange(realChangeFn: Function, formattedValue: string) {
     const digits = formattedValue.replace(/\D/g, "");
     const realValue = Number(digits) / 100;

@@ -13,7 +13,7 @@ export function fetchRecentIncomes(): Income[] {
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 5);
   } catch (error) {
-    console.info(error);
+    console.error(error);
 
     return [];
   }
@@ -25,7 +25,7 @@ export function fetchIncomes(): Income[] {
 
     return incomes as [];
   } catch (error) {
-    console.info(error);
+    console.error(error);
 
     return [];
   }
@@ -40,7 +40,9 @@ export function fetchIncome(id: string): Income | null {
     const income = incomeService.findById(Number.parseInt(id));
 
     return income;
-  } catch (error: any) {
+  } catch (error) {
+    console.error(error);
+
     return null;
   }
 };

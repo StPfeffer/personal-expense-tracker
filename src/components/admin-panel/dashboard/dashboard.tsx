@@ -40,7 +40,7 @@ const Dashboard = ({
   const router = useRouter();
 
   useEffect(() => {
-    const loadDataToLocalStorage = (key: string, data: any, message: string) => {
+    const loadDataToLocalStorage = (key: string, data: Transaction[]) => {
       const existingData = localStorage.getItem(key);
 
       if (!existingData) {
@@ -58,18 +58,15 @@ const Dashboard = ({
 
       const newTransactionsLoaded = loadDataToLocalStorage(
         "transactions",
-        transactions,
-        "Initial transactions loaded."
+        transactions
       );
       const newIncomesLoaded = loadDataToLocalStorage(
         "incomes",
-        incomes,
-        "Initial incomes loaded."
+        incomes
       );
       const newExpensesLoaded = loadDataToLocalStorage(
         "expenses",
-        expenses,
-        "Initial expenses loaded."
+        expenses
       );
 
       if (newTransactionsLoaded || newIncomesLoaded || newExpensesLoaded) {
