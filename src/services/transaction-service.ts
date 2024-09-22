@@ -1,6 +1,6 @@
 "use client";
 
-import { transactions } from "@/db/dummy/data";
+import { transactions } from "@/db/dummy/transactions";
 import { Transaction } from "@/types/transaction";
 
 // should fetch from an external API in the future
@@ -15,8 +15,23 @@ export class TransactionService {
     return JSON.parse(localStorage.getItem("transactions") || "[]");
   }
 
-  initialize(): Transaction[] {
-    return transactions;
+  listByUser(userId: number): Transaction[] {
+    return this.list().filter(t => t.userId === userId);
+  }
+
+  initialize(): void {
+    loadDataToLocalStorage("transactions", transactions);
   }
 
 }
+
+export const loadDataToLocalStorage = (key: string, data: Transaction[]) => {
+  const existingData = localStorage.getItem(key);
+
+  if (!existingData) {
+    localStorage.setItem(key, JSON.stringify(data));
+    return true;
+  }
+
+  return false;
+};

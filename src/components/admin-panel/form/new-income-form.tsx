@@ -23,6 +23,7 @@ import MoneyInput from "@/components/geral/money-input";
 import { Switch } from "@/components/ui/switch";
 import { DialogClose } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { useAuth } from "@/components/auth/auth-context-provider";
 
 const formSchema = z.object({
   paymentMethod: z
@@ -51,6 +52,8 @@ const NewIncomeForm = ({
   _onSubmit: (income: Income) => void,
   closeDialog?: boolean
 }) => {
+  const { user } = useAuth();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -74,7 +77,8 @@ const NewIncomeForm = ({
       notes: "",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      recurring: values.recurring
+      recurring: values.recurring,
+      userId: user!.id
     }
 
     existingIncomes.push(income);

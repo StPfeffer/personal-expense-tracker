@@ -109,7 +109,7 @@ export const HeroCards = () => {
 
         <CardFooter className="flex">
           <div className="space-y-4">
-            {["First Month Free", "No Credit Card Required", "Unlimited Transactions"].map(
+            {["First 3 Months Free", "No Credit Card Required", "Unlimited Transactions"].map(
               (benefit: string) => (
                 <div
                   key={benefit}

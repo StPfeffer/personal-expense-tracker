@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react"
 import CardTotal from "./card/card-total";
 import {
   Card,
@@ -16,71 +15,18 @@ import { TransactionsDataTable } from "@/components/data-table/data-table";
 import { transactionColumns } from "./transactions/transactions-columns";
 import { Expense, Income, Transaction } from "@/types/transaction";
 import { CardInfo } from "./card/types";
-import { initializeTransactions } from "@/actions/fetch-transaction";
 import { DashboardPieChart } from "./chart/pie-chart";
 import { DashboardRadarChart } from "./chart/radar-chart";
-import { initializeIncomes } from "@/actions/fetch-incomes";
-import { initializeExpenses } from "@/actions/fetch-expenses";
-import { useRouter } from "next/navigation";
 
 interface DashboardProps {
   transactions: Transaction[];
-  incomes: Income[];
-  expenses: Expense[];
   cardInfo: CardInfo[];
 }
 
 const Dashboard = ({
   transactions,
-  incomes,
-  expenses,
   cardInfo
 }: DashboardProps) => {
-  const [show, setShow] = useState<boolean>(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const loadDataToLocalStorage = (key: string, data: Transaction[]) => {
-      const existingData = localStorage.getItem(key);
-
-      if (!existingData) {
-        localStorage.setItem(key, JSON.stringify(data));
-        return true;
-      }
-
-      return false;
-    };
-
-    const loadTransactions = async () => {
-      transactions = initializeTransactions();
-      incomes = initializeIncomes();
-      expenses = initializeExpenses();
-
-      const newTransactionsLoaded = loadDataToLocalStorage(
-        "transactions",
-        transactions
-      );
-      const newIncomesLoaded = loadDataToLocalStorage(
-        "incomes",
-        incomes
-      );
-      const newExpensesLoaded = loadDataToLocalStorage(
-        "expenses",
-        expenses
-      );
-
-      if (newTransactionsLoaded || newIncomesLoaded || newExpensesLoaded) {
-        setShow(true);
-        router.replace("/dashboard");
-      }
-    };
-
-    loadTransactions();
-  }, []);
-
-  if (show) {
-    return null;
-  }
 
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">

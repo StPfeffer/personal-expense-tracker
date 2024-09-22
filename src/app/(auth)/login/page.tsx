@@ -1,10 +1,34 @@
 "use client";
 
+import { initializeUsers } from "@/actions/fetch-users";
 import { AuthProvider } from "@/components/auth/auth-context-provider";
 import { LoginForm } from "@/components/geral/login/login-form";
 import Navbar from "@/components/geral/navbar/navbar";
+import { User } from "@/types/user";
+import { useEffect } from "react";
 
 export default function Login() {
+  useEffect(() => {
+    const loadDataToLocalStorage = (key: string, data: User[]) => {
+      const existingData = localStorage.getItem(key);
+
+      if (!existingData) {
+        localStorage.setItem(key, JSON.stringify(data));
+        return true;
+      }
+
+      return false;
+    };
+
+    const loadUsers = async () => {
+      const users = initializeUsers();
+
+      const newUsersLoaded = loadDataToLocalStorage("users", users);
+    };
+
+    loadUsers();
+  }, []);
+
   return (
     <AuthProvider>
       <Navbar />

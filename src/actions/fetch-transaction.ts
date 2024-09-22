@@ -5,9 +5,9 @@ import { Transaction } from "@/types/transaction";
 
 const transactionService = new TransactionService();
 
-export function fetchRecentTransactions(): Transaction[] {
+export function fetchRecentTransactions(userId: number): Transaction[] {
   try {
-    const transactions = transactionService.list();
+    const transactions = transactionService.listByUser(userId);
 
     return (transactions as Transaction[])
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -19,9 +19,9 @@ export function fetchRecentTransactions(): Transaction[] {
   }
 }
 
-export function fetchTransactions() {
+export function fetchTransactions(userId: number) {
   try {
-    const transactions = transactionService.list();
+    const transactions = transactionService.listByUser(userId);
 
     return transactions as [];
   } catch (error) {
@@ -32,7 +32,7 @@ export function fetchTransactions() {
 }
 
 export function initializeTransactions() {
-  return transactionService.initialize();
+  transactionService.initialize();
 }
 
 export function fetchTransaction(id: string): Transaction | null {

@@ -6,6 +6,7 @@ import { fetchTransactions } from "@/actions/fetch-transaction";
 import { transactionColumns } from "@/components/admin-panel/dashboard/transactions/transactions-columns"
 import NewTransactionDialog from "@/components/admin-panel/dialog/new-transaction-dialog";
 import { ContentLayout } from "@/components/admin-panel/layout/content-layout";
+import { useAuth } from "@/components/auth/auth-context-provider";
 import { TransactionsDataTable } from "@/components/data-table/data-table"
 import {
   Breadcrumb,
@@ -21,14 +22,16 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const Transactions = () => {
+  const { user } = useAuth();
+
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
-    return fetchTransactions();
+    return fetchTransactions(user!.id);
   });
   const [incomes, setIncomes] = useState<Transaction[]>(() => {
-    return fetchIncomes();
+    return fetchIncomes(user!.id);
   });
   const [expenses, setExpenses] = useState<Transaction[]>(() => {
-    return fetchExpenses();
+    return fetchExpenses(user!.id);
   });
 
   const addTransaction = (newTransaction: Transaction) => {

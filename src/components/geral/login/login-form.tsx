@@ -25,6 +25,8 @@ import {
 } from "@/components/ui/form";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
+import { User } from "@/types/user";
+import { loadAllDataFromUser } from "@/actions/fetch-users";
 
 const formSchema = z.object({
   username: z
@@ -51,9 +53,22 @@ export function LoginForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const username = values.username;
+    const existingUsers: User[] = JSON.parse(localStorage.getItem("users") || "[]");
 
-    login({ username });
+    const username = values.username;
+    const user = existingUsers.find(u => u.username === username);
+
+    console.log(existingUsers);
+    console.log(user);
+
+    if (!user) {
+      form.setError("username", { type: "manual", message: "Username not found. Please try again." });
+      return;
+    }
+
+    loadAllDataFromUser(user.id);
+
+    login({ ...user });
   }
 
   return (

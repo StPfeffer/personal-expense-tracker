@@ -10,9 +10,9 @@ import { Testimonials } from "@/components/home/testimonials";
 export default function HomePage() {
   return (
     <div className="flex items-center flex-col min-h-screen">
-      <div className="container">
-        <Navbar />
+      <Navbar />
 
+      <div className="container">
         <main className="flex-1 items-center justify-center">
           <div className="relative pb-20 px-10 space-y-20 lg:px-5">
             <Hero />

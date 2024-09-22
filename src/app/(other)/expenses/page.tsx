@@ -6,6 +6,7 @@ import { expensesColumns } from "@/components/admin-panel/dashboard/transactions
 import { ExpensesDataTable } from "@/components/admin-panel/data-table/expenses-data-table";
 import NewExpenseDialog from "@/components/admin-panel/dialog/new-expense-dialog";
 import { ContentLayout } from "@/components/admin-panel/layout/content-layout";
+import { useAuth } from "@/components/auth/auth-context-provider";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -20,12 +21,14 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const Expenses = () => {
+  const { user } = useAuth();
+
   const [expenses, setExpenses] = useState<Expense[]>(() => {
-    return fetchExpenses();
+    return fetchExpenses(user!.id);
   });
 
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
-    return fetchTransactions();
+    return fetchTransactions(user!.id);
   })
 
   const addExpense = (newExpenseTransaction: Expense) => {

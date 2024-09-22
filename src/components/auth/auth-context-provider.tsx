@@ -1,9 +1,6 @@
+import { User } from "@/types/user";
 import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-
-interface User {
-  username: string;
-}
 
 interface AuthContextType {
   user: User | null;
@@ -31,6 +28,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = (userData: User) => {
+    if (userData.id === 0) {
+      return;
+    }
+
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
     router.replace('/dashboard', { scroll: false });
@@ -43,9 +44,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const isAuthenticated = !!user;
-
-  console.log("isAuthenticated =>");
-  console.log(isAuthenticated);
 
   return (
     <AuthContext.Provider value={{ user, login, logout, isAuthenticated, isLoading }}>

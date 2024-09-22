@@ -6,6 +6,7 @@ import { incomesColumns } from "@/components/admin-panel/dashboard/transactions/
 import { IncomesDataTable } from "@/components/admin-panel/data-table/incomes-data-table";
 import NewIncomeDialog from "@/components/admin-panel/dialog/new-income-dialog";
 import { ContentLayout } from "@/components/admin-panel/layout/content-layout";
+import { useAuth } from "@/components/auth/auth-context-provider";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -20,12 +21,14 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const Incomes = () => {
+  const { user } = useAuth();
+
   const [incomes, setIncomes] = useState<Income[]>(() => {
-    return fetchIncomes();
+    return fetchIncomes(user!.id);
   });
 
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
-    return fetchTransactions();
+    return fetchTransactions(user!.id);
   })
 
   const addIncome = (newIncomeTransaction: Income) => {

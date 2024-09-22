@@ -17,46 +17,45 @@ interface TestimonialProps {
 const testimonials: TestimonialProps[] = [
   {
     image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe",
-    comment: "This landing page is awesome!",
+    name: "Emily Smith",
+    userName: "@emily_smith",
+    comment: "This app is awesome!"
   },
   {
     image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe1",
+    name: "Michael Johnson",
+    userName: "@michael_j",
     comment:
-      "Lorem ipsum dolor sit amet,empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-  },
-
-  {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe2",
-    comment:
-      "Lorem ipsum dolor sit amet,exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+      "I never realized how much I was overspending each month until I started using this expense tracker."
   },
   {
     image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe3",
+    name: "Sarah Williams",
+    userName: "@sarah_w",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+      "This app helped me save for my vacation by keeping me mindful of my spending habits."
   },
   {
     image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe4",
+    name: "David Brown",
+    userName: "@david_b",
     comment:
-      "Lorem ipsum dolor sit amet, tempor incididunt  aliqua. Ut enim ad minim veniam, quis nostrud.",
+      "I've tried a few expense trackers before, but this one stands out. The interface is user-friendly, and the reports give me a clear overview of where my money is going."
   },
   {
     image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe5",
+    name: "Lisa Davis",
+    userName: "@lisa_d",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Since using this app, I've been able to cut unnecessary expenses and save more each month. It's made managing my budget so much simpler."
   },
+  {
+    image: "https://github.com/shadcn.png",
+    name: "Tom Harris",
+    userName: "@tom_h",
+    comment:
+      "The best part about this app is how easy it is to use."
+  }
 ];
 
 export const Testimonials = () => {
@@ -71,12 +70,13 @@ export const Testimonials = () => {
           {" "}
           People Love{" "}
         </span>
-        This Landing Page
+        Our Expense Tracker
       </h2>
 
       <p className="text-xl text-muted-foreground pt-4 pb-8">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non unde error
-        facere hic reiciendis illo
+        See how our personal expense tracker is helping people manage their
+        finances with ease and confidence. Join a community that’s taking control
+        of their budgets.
       </p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 sm:block columns-2  lg:columns-3 lg:gap-6 mx-auto space-y-4 lg:space-y-6">

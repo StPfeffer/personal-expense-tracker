@@ -21,9 +21,10 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/components/auth/auth-context-provider";
+import { getUserInitials } from "@/lib/utils";
 
 export function UserNav() {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   return (
     <DropdownMenu>
@@ -37,7 +38,9 @@ export function UserNav() {
               >
                 <Avatar className="h-8 w-8">
                   <AvatarImage src="#" alt="Avatar" />
-                  <AvatarFallback className="bg-transparent">JD</AvatarFallback>
+                  <AvatarFallback className="bg-transparent">
+                    {getUserInitials(user?.name)}
+                  </AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
@@ -49,9 +52,11 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">John Doe</p>
+            <p className="text-sm font-medium leading-none">
+              {user?.name.trim()}
+            </p>
             <p className="text-xs leading-none text-muted-foreground">
-              johndoe@example.com
+              {user?.email.trim()}
             </p>
           </div>
         </DropdownMenuLabel>

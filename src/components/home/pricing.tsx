@@ -33,7 +33,7 @@ const pricingList: PricingProps[] = [
     description: "Get started with our Free plan, perfect for individuals or small teams looking to explore our features.",
     buttonText: "Get Started",
     benefitList: [
-      "First Month Free",
+      "First 3 Months Free",
       "No Credit Card Required",
       "Unlimited Transactions",
       "Community Support",
@@ -80,8 +80,7 @@ export const Pricing = () => {
       </h2>
 
       <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-        reiciendis.
+        Track your expenses, set budgets, and achieve your financial goals with ease. Simplify your money management today.
       </h3>
 
       <div className="flex justify-center">

@@ -24,16 +24,19 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchIncomes } from '@/actions/fetch-incomes';
 import { fetchExpenses } from '@/actions/fetch-expenses';
+import { useAuth } from '@/components/auth/auth-context-provider';
 
 const NewTransactionPage = () => {
+  const { user } = useAuth();
+
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
-    return fetchTransactions();
+    return fetchTransactions(user!.id);
   });
   const [incomes, setIncomes] = useState<Transaction[]>(() => {
-    return fetchIncomes();
+    return fetchIncomes(user!.id);
   });
   const [expenses, setExpenses] = useState<Transaction[]>(() => {
-    return fetchExpenses();
+    return fetchExpenses(user!.id);
   });
 
   const router = useRouter();

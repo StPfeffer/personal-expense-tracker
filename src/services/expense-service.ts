@@ -1,6 +1,6 @@
 "use client";
 
-import { transactions } from "@/db/dummy/data";
+import { transactions } from "@/db/dummy/transactions";
 import { isExpense } from "@/lib/utils";
 import { Expense } from "@/types/transaction";
 
@@ -16,9 +16,23 @@ export class ExpenseService {
     return JSON.parse(localStorage.getItem("expenses") || "[]");
   }
 
-  initialize(): Expense[] {
-    const expenses: Expense[] = transactions.filter(isExpense);
-    return expenses;
+  listByUser(userId: number): Expense[] {
+    return this.list().filter(t => t.userId === userId);
   }
 
+  initialize(): void {
+    loadDataToLocalStorage("expenses", transactions.filter(isExpense));
+  }
+
+}
+
+export const loadDataToLocalStorage = (key: string, data: Expense[]) => {
+  const existingData = localStorage.getItem(key);
+
+  if (!existingData) {
+    localStorage.setItem(key, JSON.stringify(data));
+    return true;
+  }
+
+  return false;
 }

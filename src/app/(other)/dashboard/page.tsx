@@ -14,14 +14,13 @@ import {
 import Link from "next/link";
 import Dashboard from "@/components/admin-panel/dashboard/dashboard";
 import { fetchRecentTransactions, fetchTransactions } from "@/actions/fetch-transaction";
-import { fetchRecentIncomes } from "@/actions/fetch-incomes";
-import { fetchRecentExpenses } from "@/actions/fetch-expenses";
+import { useAuth } from "@/components/auth/auth-context-provider";
 
 const DashboardPage = () => {
-  const transactions = fetchRecentTransactions();
-  const incomes = fetchRecentIncomes();
-  const expenses = fetchRecentExpenses();
-  const cardInfo: CardInfo[] = calculateCardInfo(fetchTransactions());
+  const { user } = useAuth();
+
+  const transactions = fetchRecentTransactions(user!.id);
+  const cardInfo: CardInfo[] = calculateCardInfo(fetchTransactions(user!.id));
 
   return (
     <ContentLayout title="Dashboard">
@@ -42,8 +41,6 @@ const DashboardPage = () => {
       <Dashboard
         cardInfo={cardInfo}
         transactions={transactions}
-        incomes={incomes}
-        expenses={expenses}
       />
     </ContentLayout>
   );

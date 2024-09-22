@@ -12,7 +12,7 @@ interface BaseTransaction {
   createdAt: string;
   updatedAt: string;
   recurring?: boolean;
-  userId?: number;
+  userId: number;
 }
 
 export interface Income extends BaseTransaction {

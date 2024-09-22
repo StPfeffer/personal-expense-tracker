@@ -38,6 +38,7 @@ import { Switch } from "@/components/ui/switch";
 import { getRandomArbitrary } from "@/lib/utils";
 import { DialogClose } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { useAuth } from "@/components/auth/auth-context-provider";
 
 const formSchema = z.object({
   category: z
@@ -74,6 +75,8 @@ const NewTransactionForm = ({
   _onSubmit: (transaction: Transaction) => void,
   closeDialog?: boolean
 }) => {
+  const { user } = useAuth();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -100,7 +103,8 @@ const NewTransactionForm = ({
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       recurring: values.recurring,
-      transactionId: getRandomArbitrary().toString()
+      transactionId: getRandomArbitrary().toString(),
+      userId: user!.id
     }
 
     existingTransactions.push(transaction);

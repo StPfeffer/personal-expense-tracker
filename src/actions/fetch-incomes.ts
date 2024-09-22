@@ -5,9 +5,9 @@ import { Income } from "@/types/transaction";
 
 const incomeService = new IncomeService();
 
-export function fetchRecentIncomes(): Income[] {
+export function fetchRecentIncomes(userId: number): Income[] {
   try {
-    const incomes = incomeService.list();
+    const incomes = incomeService.listByUser(userId);
 
     return (incomes as Income[])
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -19,9 +19,9 @@ export function fetchRecentIncomes(): Income[] {
   }
 }
 
-export function fetchIncomes(): Income[] {
+export function fetchIncomes(userId: number): Income[] {
   try {
-    const incomes = incomeService.list();
+    const incomes = incomeService.listByUser(userId);
 
     return incomes as [];
   } catch (error) {
