@@ -7,6 +7,7 @@ import { DataTableColumnHeader } from "@/components/data-table/data-table-column
 import { DataTableRowActions } from "@/components/data-table/data-table-row-actions";
 import { Switch } from "@/components/ui/switch";
 import { Income } from "@/types/transaction";
+import { formatDate } from "date-fns";
 
 export const incomesColumns: ColumnDef<Income>[] = [
   {
@@ -47,7 +48,10 @@ export const incomesColumns: ColumnDef<Income>[] = [
     accessorKey: "date",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date" />
-    )
+    ),
+    cell: ({ row }) => {
+      return formatDate(row.getValue("date"), "PPP");
+    }
   },
   {
     accessorKey: "recurring",

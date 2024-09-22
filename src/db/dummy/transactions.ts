@@ -13,6 +13,7 @@ export const transactions: Transaction[] = [
     createdAt: "2024-09-20T10:00:00Z",
     updatedAt: "2024-09-20T10:00:00Z",
     transactionId: "239875839642385345",
+    cardBrand: "Elo",
     userId: 2
   },
   {

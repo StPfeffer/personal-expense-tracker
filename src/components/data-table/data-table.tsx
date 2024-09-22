@@ -33,6 +33,7 @@ export function TransactionsDataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({
     transactionId: false,
     recurring: false,
+    cardBrand: false,
   });
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = React.useState<SortingState>([]);

@@ -46,3 +46,15 @@ export function fetchTransaction(id: string): Transaction | null {
     return null;
   }
 };
+
+export function deleteTransaction(id: number): void {
+  try {
+    const deleted = transactionService.deleteById(id);
+
+    if (!deleted) {
+      throw Error;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}

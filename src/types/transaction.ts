@@ -20,7 +20,8 @@ export interface Income extends BaseTransaction {
 
 export interface Expense extends BaseTransaction {
   type: PaymentType;
-  paymentMethod?: PaymentMethod;
+  paymentMethod: PaymentMethod;
+  cardBrand?: CardBrand;
   transactionId: string | null;
 }
 
@@ -75,6 +76,45 @@ export type PaymentMethod =
   | "crypto"
   | "check"
   | "other";
+
+export type CardBrand =
+  | "Alipay"
+  | "Amex"
+  | "Code"
+  | "CodeFront"
+  | "Diners"
+  | "Discover"
+  | "Elo"
+  | "Generic"
+  | "Hiper"
+  | "Hipercard"
+  | "Jcb"
+  | "Maestro"
+  | "Mastercard"
+  | "Mir"
+  | "Paypal"
+  | "Unionpay"
+  | "Visa";
+
+export const cardBrands: CardBrand[] = [
+  "Alipay",
+  "Amex",
+  "Code",
+  "CodeFront",
+  "Diners",
+  "Discover",
+  "Elo",
+  "Generic",
+  "Hiper",
+  "Hipercard",
+  "Jcb",
+  "Maestro",
+  "Mastercard",
+  "Mir",
+  "Paypal",
+  "Unionpay",
+  "Visa"
+];
 
 interface PaymentMethodDetails {
   label: string;

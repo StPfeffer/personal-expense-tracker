@@ -72,11 +72,11 @@ const NewIncomeForm = ({
       id: lastId,
       description: values.description,
       amount: values.amount,
-      date: new Date().toISOString(),
+      date: new Date().toLocaleString(),
       category: "income" as TransactionCategory,
       notes: "",
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      createdAt: new Date().toLocaleString(),
+      updatedAt: new Date().toLocaleString(),
       recurring: values.recurring,
       userId: user!.id
     }

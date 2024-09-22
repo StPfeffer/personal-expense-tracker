@@ -23,6 +23,16 @@ export class TransactionService {
     loadDataToLocalStorage("transactions", transactions);
   }
 
+  deleteById(id: number): boolean {
+    const transaction = this.findById(id);
+
+    if (!transaction) {
+      return false;
+    }
+
+    return removeDataFromLocalStore("transactions", transaction);
+  }
+
 }
 
 export const loadDataToLocalStorage = (key: string, data: Transaction[]) => {
@@ -35,3 +45,20 @@ export const loadDataToLocalStorage = (key: string, data: Transaction[]) => {
 
   return false;
 };
+
+export const removeDataFromLocalStore = (key: string, transactionToRemove: Transaction) => {
+  const existingData = localStorage.getItem(key);
+
+  if (existingData) {
+    const existingTransactions: Transaction[] = JSON.parse(existingData);
+    
+    const updatedTransactions = existingTransactions.filter(transaction => transaction.id !== transactionToRemove.id);
+    
+    if (existingTransactions.length !== updatedTransactions.length) {
+      localStorage.setItem(key, JSON.stringify(updatedTransactions));
+      return true;
+    }
+  }
+
+  return false;
+}

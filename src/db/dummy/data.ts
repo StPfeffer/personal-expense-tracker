@@ -28,6 +28,94 @@ export const types = [
   }
 ];
 
+export const cardBrands = [
+  {
+    value: "Alipay",
+    label: "Alipay",
+    icon: undefined,
+  },
+  {
+    value: "Amex",
+    label: "Amex",
+    icon: undefined,
+  },
+  {
+    value: "Code",
+    label: "Code",
+    icon: undefined,
+  },
+  {
+    value: "CodeFront",
+    label: "CodeFront",
+    icon: undefined,
+  },
+  {
+    value: "Diners",
+    label: "Diners",
+    icon: undefined,
+  },
+  {
+    value: "Discover",
+    label: "Discover",
+    icon: undefined,
+  },
+  {
+    value: "Elo",
+    label: "Elo",
+    icon: undefined,
+  },
+  {
+    value: "Generic",
+    label: "Generic",
+    icon: undefined,
+  },
+  {
+    value: "Hiper",
+    label: "Hiper",
+    icon: undefined,
+  },
+  {
+    value: "Hipercard",
+    label: "Hipercard",
+    icon: undefined,
+  },
+  {
+    value: "Jcb",
+    label: "Jcb",
+    icon: undefined,
+  },
+  {
+    value: "Maestro",
+    label: "Maestro",
+    icon: undefined,
+  },
+  {
+    value: "Mastercard",
+    label: "Mastercard",
+    icon: undefined,
+  },
+  {
+    value: "Mir",
+    label: "Mir",
+    icon: undefined,
+  },
+  {
+    value: "Paypal",
+    label: "Paypal",
+    icon: undefined,
+  },
+  {
+    value: "Unionpay",
+    label: "Unionpay",
+    icon: undefined,
+  },
+  {
+    value: "Visa",
+    label: "Visa",
+    icon: undefined,
+  },
+]
+
 export const paymentMethods = transformPaymentMethods();
 
 function transformPaymentMethods() {

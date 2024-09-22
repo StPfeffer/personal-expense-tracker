@@ -1,16 +1,20 @@
-"use client"
+"use client";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { Ellipsis } from "lucide-react";
 import { Row } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
+import { TransactionDetailsDialog } from "../admin-panel/dialog/transaction-details-dialog";
+import { Transaction } from "@/types/transaction";
+import { deleteTransaction } from "@/actions/fetch-transaction";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>,
@@ -21,7 +25,7 @@ export function DataTableRowActions<TData>({
   row,
   acessorKey
 }: DataTableRowActionsProps<TData>) {
-  const router = useRouter();
+  const transaction = row.original as Transaction;
 
   return (
     <DropdownMenu>
@@ -35,11 +39,11 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={() => router.push(`/transactions/${row.getValue("id")}`)}>
-          View Details
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+          <TransactionDetailsDialog transaction={transaction} />
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push(`/transactions/${row.getValue("id")}`)}>
-          Edit
+        <DropdownMenuItem disabled>
+          Edit transaction
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => navigator.clipboard.writeText(row.getValue(acessorKey))}
@@ -47,7 +51,28 @@ export function DataTableRowActions<TData>({
           Copy external ID
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Delete</DropdownMenuItem>
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+          <Dialog>
+            <DropdownMenuSeparator />
+            <DialogTrigger>
+              <DropdownMenuItem>Delete</DropdownMenuItem>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Are you sure?</DialogTitle>
+                <DialogDescription>
+                  Do you want to delete the entry? Deleting this entry cannot be
+                  undone.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

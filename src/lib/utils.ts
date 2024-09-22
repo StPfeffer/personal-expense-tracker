@@ -42,3 +42,11 @@ export const getUserInitials = (name: string | undefined) => {
     .slice(0, 2)
     .join('');
 }
+
+export const formatDate = (date: string | undefined) => {
+  if (!date) {
+    return "";
+  }
+
+  return new Date(date).toLocaleString();
+}

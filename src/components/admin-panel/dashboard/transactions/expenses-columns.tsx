@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table"
-import { Expense, PaymentMethod, paymentMethodsDetails } from "@/types/transaction";
+import { CardBrand, Expense, PaymentMethod, paymentMethodsDetails } from "@/types/transaction";
 
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,9 @@ import { capitalizeFirstLetter } from "@/lib/utils";
 import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header";
 import { DataTableRowActions } from "@/components/data-table/data-table-row-actions";
 import { Switch } from "@/components/ui/switch";
+
+import { PaymentIcon } from 'react-svg-credit-card-payment-icons';
+import { formatDate } from "date-fns";
 
 export const expensesColumns: ColumnDef<Expense>[] = [
   {
@@ -49,7 +52,10 @@ export const expensesColumns: ColumnDef<Expense>[] = [
     accessorKey: "date",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date" />
-    )
+    ),
+    cell: ({ row }) => {
+      return formatDate(row.getValue("date"), "PPP");
+    }
   },
   {
     accessorKey: "type",
@@ -105,6 +111,19 @@ export const expensesColumns: ColumnDef<Expense>[] = [
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
+  },
+  {
+    accessorKey: "cardBrand",
+    header: "Card",
+    cell: ({ row }) => {
+      const card: CardBrand = row.getValue("cardBrand");
+
+      if (!card) {
+        return null;
+      }
+
+      return <PaymentIcon type={card} format="mono" width={45} />
+    }
   },
   {
     accessorKey: "amount",

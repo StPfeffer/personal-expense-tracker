@@ -6,7 +6,7 @@ import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
 import { DataTableViewOptions } from "./data-table-view-options";
-import { types, categories, paymentMethods } from "@/db/dummy/data";
+import { types, categories, paymentMethods, cardBrands } from "@/db/dummy/data";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -48,6 +48,13 @@ export function DataTableToolbar<TData>({
               column={table.getColumn("paymentMethod")}
               title="Method"
               options={paymentMethods}
+            />
+          )}
+          {table.getAllColumns().find(x => x.id === "cardBrand") && (
+            <DataTableFacetedFilter
+              column={table.getColumn("cardBrand")}
+              title="Card Brand"
+              options={cardBrands}
             />
           )}
           {isFiltered && (
