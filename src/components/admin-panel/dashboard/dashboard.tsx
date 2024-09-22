@@ -109,7 +109,9 @@ const Dashboard = ({
 
           <Button asChild size="sm" className="ml-auto gap-1">
             <Link href="/transactions">
-              View All
+              <span className="hidden md:block">
+                View All
+              </span>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Button>
