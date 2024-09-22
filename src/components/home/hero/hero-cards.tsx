@@ -46,20 +46,19 @@ export const HeroCards = () => {
           <Image
             width={96}
             height={96}
-            src="https://i.pravatar.cc/150?img=58"
-            alt="user avatar"
+            src="https://via.placeholder.com/150"
+            alt="project image"
             className="absolute grayscale-[0%] -top-12 rounded-full w-24 h-24 aspect-square object-cover"
           />
-          <CardTitle className="text-center">Leo Miranda</CardTitle>
+          <CardTitle className="text-center">Project Garuda</CardTitle>
           <CardDescription className="font-normal text-primary">
-            Frontend Developer
+            ETL Software Integration
           </CardDescription>
         </CardHeader>
 
         <CardContent className="text-center pb-2">
           <p>
-            I really enjoy transforming ideas into functional software that
-            exceeds expectations
+            Project Garuda is designed to streamline software integrations through efficient ETL processes.
           </p>
         </CardContent>
 
@@ -67,7 +66,7 @@ export const HeroCards = () => {
           <div>
             <Link
               rel="noreferrer noopener"
-              href="https://github.com/StPfeffer"
+              href="https://github.com/StPfeffer/garuda"
               target="_blank"
               className={buttonVariants({
                 variant: "ghost",
@@ -76,39 +75,6 @@ export const HeroCards = () => {
             >
               <span className="sr-only">Github icon</span>
               <GitHubLogoIcon className="w-5 h-5" />
-            </Link>
-            <Link
-              rel="noreferrer noopener"
-              href="https://twitter.com/leo_mirand4"
-              target="_blank"
-              className={buttonVariants({
-                variant: "ghost",
-                size: "sm",
-              })}
-            >
-              <span className="sr-only">X icon</span>
-              <svg
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                className="fill-foreground w-5 h-5"
-              >
-                <title>X</title>
-                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-              </svg>
-            </Link>
-
-            <Link
-              rel="noreferrer noopener"
-              href="https://www.linkedin.com/in/leopoldo-miranda/"
-              target="_blank"
-              className={buttonVariants({
-                variant: "ghost",
-                size: "sm",
-              })}
-            >
-              <span className="sr-only">Linkedin icon</span>
-              <Linkedin size="20" />
             </Link>
           </div>
         </CardFooter>

@@ -1,62 +1,45 @@
 .shadow {
-  position: absolute;
+  @apply absolute w-[260px] h-[400px] blur-[150px] animate-[shadow-slide_infinite_4s_linear_alternate] rounded-3xl top-[200px];
   background: hsl(var(--primary) / 0%);
-  border-radius: 24px;
   rotate: 35deg;
-  width: 260px;
-  top: 200px;
-  height: 400px;
-  filter: blur(150px);
-  animation: shadow-slide infinite 4s linear alternate;
 }
-
 @keyframes shadow-slide {
   from {
+    @apply right-[460px];
     background: hsl(var(--primary) / 20%);
-    right: 460px;
   }
-
   to {
+    @apply right-40;
     background: hsl(var(--primary) / 80%);
-    right: 160px;
   }
 }
-
 @media (max-width: 1024px) {
   .shadow {
-    top: 70px;
+    @apply top-[70px];
   }
-
   @keyframes shadow-slide {
     from {
+      @apply right-[460px];
       background: hsl(var(--primary) / 20%);
-      right: 460px;
     }
-
     to {
+      @apply right-40;
       background: hsl(var(--primary) / 50%);
-      right: 160px;
     }
   }
 }
-
 @media (max-width: 768px) {
   .shadow {
-    top: 70px;
-    width: 100px;
-    height: 350px;
-    filter: blur(60px);
+    @apply w-[100px] h-[350px] blur-[60px] top-[70px];
   }
-
   @keyframes shadow-slide {
     from {
+      @apply right-[280px];
       background: hsl(var(--primary) / 20%);
-      right: 280px;
     }
-
     to {
+      @apply right-[100px];
       background: hsl(var(--primary) / 30%);
-      right: 100px;
     }
   }
 }

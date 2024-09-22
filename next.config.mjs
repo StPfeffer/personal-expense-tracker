@@ -11,7 +11,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "i.pravatar.cc",
+        hostname: "via.placeholder.com",
         port: ""
       }
     ],
