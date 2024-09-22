@@ -58,11 +58,13 @@ export function LoginForm() {
     const username = values.username;
     const user = existingUsers.find(u => u.username === username);
 
-    console.log(existingUsers);
-    console.log(user);
-
     if (!user) {
       form.setError("username", { type: "manual", message: "Username not found. Please try again." });
+      return;
+    }
+
+    if (user.password !== values.password) {
+      form.setError("password", { type: "manual", message: "Invalid password. Please try again." });
       return;
     }
 
@@ -76,7 +78,7 @@ export function LoginForm() {
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>
-          Enter your username below to login to your account
+          Enter your username below to login to your account.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -107,7 +109,7 @@ export function LoginForm() {
                     <FormLabel>
                       <div className="flex items-center">
                         <Label htmlFor="password">Password</Label>
-                        <Link href="#" className="ml-auto inline-block text-sm underline">
+                        <Link href="#" className="ml-auto inline-block text-sm underline" tabIndex={-1}>
                           Forgot your password?
                         </Link>
                       </div>
@@ -134,7 +136,7 @@ export function LoginForm() {
 
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
-              <Link href="#" className="underline">
+              <Link href="/register" className="underline">
                 Sign up
               </Link>
             </div>
