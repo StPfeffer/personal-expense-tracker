@@ -30,8 +30,8 @@ export function fetchExpenses(userId: number) {
   }
 }
 
-export function initializeExpenses() {
-  return expenseService.initialize();
+export function initializeExpenses(userId: number) {
+  return expenseService.initialize(userId);
 }
 
 export function fetchExpense(id: string): Expense | null {

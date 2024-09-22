@@ -4,7 +4,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "../ui/dropdown-menu";
@@ -13,7 +12,6 @@ import { Ellipsis } from "lucide-react";
 import { Row } from "@tanstack/react-table";
 import { TransactionDetailsDialog } from "../admin-panel/dialog/transaction-details-dialog";
 import { Transaction } from "@/types/transaction";
-import { deleteTransaction } from "@/actions/fetch-transaction";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 
 interface DataTableRowActionsProps<TData> {

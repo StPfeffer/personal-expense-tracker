@@ -12,7 +12,7 @@ export function initializeUsers() {
 }
 
 export const loadAllDataFromUser = (userId: number) => {
-  initializeTransactions();
-  initializeIncomes();
-  initializeExpenses();
+  initializeTransactions(userId);
+  initializeIncomes(userId);
+  initializeExpenses(userId);
 }

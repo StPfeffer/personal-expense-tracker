@@ -20,8 +20,8 @@ export class ExpenseService {
     return this.list().filter(t => t.userId === userId);
   }
 
-  initialize(): void {
-    loadDataToLocalStorage("expenses", transactions.filter(isExpense));
+  initialize(userId: number): void {
+    loadDataToLocalStorage("expenses", transactions.filter(t => t.userId === userId).filter(isExpense));
   }
 
 }

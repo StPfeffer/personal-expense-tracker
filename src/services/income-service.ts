@@ -20,8 +20,8 @@ export class IncomeService {
     return this.list().filter(t => t.userId === userId);
   }
 
-  initialize(): void {
-    loadDataToLocalStorage("incomes", transactions.filter(isIncome));
+  initialize(userId: number): void {
+    loadDataToLocalStorage("incomes", transactions.filter(t => t.userId === userId).filter(isIncome));
   }
 
 }

@@ -68,7 +68,7 @@ export function TransactionDetailsDialog({
             const expense = transaction as Expense;
             const formattedMethod = paymentMethodsDetails[expense.paymentMethod];
 
-            let type = expense.type;
+            const type = expense.type;
 
             const color: Record<string, string> = {
               debit: "bg-green-400 dark:bg-green-600",

@@ -31,8 +31,8 @@ export function fetchIncomes(userId: number): Income[] {
   }
 }
 
-export function initializeIncomes() {
-  return incomeService.initialize();
+export function initializeIncomes(userId: number) {
+  return incomeService.initialize(userId);
 }
 
 export function fetchIncome(id: string): Income | null {

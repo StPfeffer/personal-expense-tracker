@@ -31,8 +31,8 @@ export function fetchTransactions(userId: number) {
   }
 }
 
-export function initializeTransactions() {
-  transactionService.initialize();
+export function initializeTransactions(userId: number) {
+  transactionService.initialize(userId);
 }
 
 export function fetchTransaction(id: string): Transaction | null {

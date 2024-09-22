@@ -19,8 +19,8 @@ export class TransactionService {
     return this.list().filter(t => t.userId === userId);
   }
 
-  initialize(): void {
-    loadDataToLocalStorage("transactions", transactions);
+  initialize(userId: number): void {
+    loadDataToLocalStorage("transactions", transactions.filter(t => t.userId === userId));
   }
 
   deleteById(id: number): boolean {

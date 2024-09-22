@@ -13,7 +13,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { TransactionsDataTable } from "@/components/data-table/data-table";
 import { transactionColumns } from "./transactions/transactions-columns";
-import { Expense, Income, Transaction } from "@/types/transaction";
+import { Transaction } from "@/types/transaction";
 import { CardInfo } from "./card/types";
 import { DashboardPieChart } from "./chart/pie-chart";
 import { DashboardRadarChart } from "./chart/radar-chart";
