@@ -50,3 +50,16 @@ export const formatDate = (date: string | undefined) => {
 
   return new Date(date).toLocaleString();
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getNextId = (something: any[]): number => {
+  let lastId = Math.max(...something.map(transaction => transaction.id));
+
+  if (!lastId) {
+    lastId = 1;
+  } else {
+    lastId += 1;
+  }
+
+  return lastId;
+}

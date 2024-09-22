@@ -26,6 +26,7 @@ import {
 import Link from "next/link";
 import { User } from "@/types/user";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { getNextId } from "@/lib/utils";
 
 const formSchema = z.object({
   name: z
@@ -77,10 +78,7 @@ export function RegisterForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     const existingUsers: User[] = JSON.parse(localStorage.getItem("users") || "[]");
 
-    console.log(existingUsers);
-
-    let lastId = Math.max(...existingUsers.map(u => u.id));
-    lastId += 1;
+    const lastId = getNextId(existingUsers);
 
     const user: User = {
       id: lastId,

@@ -35,7 +35,7 @@ import {
 import { Input } from "@/components/ui/input";
 import MoneyInput from "@/components/geral/money-input";
 import { Switch } from "@/components/ui/switch";
-import { getRandomArbitrary } from "@/lib/utils";
+import { getNextId, getRandomArbitrary } from "@/lib/utils";
 import { DialogClose } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useAuth } from "@/components/auth/auth-context-provider";
@@ -88,8 +88,7 @@ const NewTransactionForm = ({
   function onSubmit(values: z.infer<typeof formSchema>) {
     const existingTransactions: Transaction[] = JSON.parse(localStorage.getItem("transactions") || "[]");
 
-    let lastId = Math.max(...existingTransactions.map(transaction => transaction.id));
-    lastId += 1;
+    const lastId = getNextId(existingTransactions);
 
     const transaction: Transaction = {
       id: lastId,

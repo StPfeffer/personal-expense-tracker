@@ -24,6 +24,7 @@ import { Switch } from "@/components/ui/switch";
 import { DialogClose } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useAuth } from "@/components/auth/auth-context-provider";
+import { getNextId } from "@/lib/utils";
 
 const formSchema = z.object({
   paymentMethod: z
@@ -65,8 +66,7 @@ const NewIncomeForm = ({
   function onSubmit(values: z.infer<typeof formSchema>) {
     const existingIncomes: Income[] = JSON.parse(localStorage.getItem("incomes") || "[]");
 
-    let lastId = Math.max(...existingIncomes.map(transaction => transaction.id));
-    lastId += 1;
+    const lastId = getNextId(existingIncomes);
 
     const income: Income = {
       id: lastId,
