@@ -11,8 +11,8 @@ export function getNavLinks(): NavLinkProps[] {
       label: "Dashboard"
     },
     {
-      href: "/sobre",
-      label: "Sobre"
+      href: "/about",
+      label: "About"
     }
   ]
 }
