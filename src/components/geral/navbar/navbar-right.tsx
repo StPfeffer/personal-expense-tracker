@@ -1,16 +1,16 @@
 "use client";
 
+import { UserNav } from '@/components/admin-panel/navbar/user-nav';
 import { useAuth } from '@/components/auth/auth-context-provider';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
-import { LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 
 const NavbarRight = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
   return (
@@ -27,15 +27,7 @@ const NavbarRight = () => {
       <ModeToggle className="mr-4" />
 
       {user &&
-        <>
-          <Button onClick={() => router.push("/dashboard")}>
-            Welcome, {user.name.split(" ").at(0)}
-          </Button>
-
-          <Button className="ml-2" onClick={logout} variant="ghost">
-            <LogOut className="w-6 h-6" />
-          </Button>
-        </>
+        <UserNav />
       }
       {!user &&
         <Button onClick={() => router.push("/login")}>Sign In</Button>
