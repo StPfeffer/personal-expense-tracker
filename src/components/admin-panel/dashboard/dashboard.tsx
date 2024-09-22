@@ -130,7 +130,7 @@ const Dashboard = ({
 
         </CardHeader>
         <CardContent>
-          <div className="flex w-full justify-between space-x-5">
+          <div className="grid lg:flex md:grid-cols-2 w-full lg:justify-between gap-8">
             <DashboardPieChart />
             <DashboardRadarChart />
           </div>
