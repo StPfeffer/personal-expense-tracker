@@ -1,4 +1,4 @@
-.shadow {
+.hero-shadow {
   @apply absolute w-[260px] h-[400px] blur-[150px] animate-[shadow-slide_infinite_4s_linear_alternate] rounded-3xl top-[200px];
   background: hsl(var(--primary) / 0%);
   rotate: 35deg;
@@ -14,7 +14,7 @@
   }
 }
 @media (max-width: 1024px) {
-  .shadow {
+  .hero-shadow {
     @apply top-[70px];
   }
   @keyframes shadow-slide {
@@ -29,7 +29,7 @@
   }
 }
 @media (max-width: 768px) {
-  .shadow {
+  .hero-shadow {
     @apply w-[100px] h-[350px] blur-[60px] top-[70px];
   }
   @keyframes shadow-slide {

@@ -48,7 +48,7 @@ export const Hero = () => {
         <HeroCards />
       </div>
 
-      <div className="shadow"></div>
+      <div className="hero-shadow"></div>
     </section>
   );
 }
