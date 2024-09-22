@@ -20,7 +20,7 @@ interface TeamProps {
 }
 
 interface SocialNetworkProps {
-  name: "Linkedin" | "Facebook" | "Instagram";
+  name: "LinkedIn" | "Facebook" | "Instagram";
   url: string;
 }
 
@@ -32,7 +32,7 @@ const teamList: TeamProps[] = [
     something: "(aka Cat Herder)",
     funFact: "Once organized a meeting about meetings—now it’s a legend!",
     socialNetworks: [
-      { name: "Linkedin", url: "https://www.linkedin.com/" },
+      { name: "LinkedIn", url: "https://www.linkedin.com/" },
       { name: "Facebook", url: "https://www.facebook.com/" },
       { name: "Instagram", url: "https://www.instagram.com/" },
     ],
@@ -44,7 +44,7 @@ const teamList: TeamProps[] = [
     something: "(aka Meeting Enthusiast)",
     funFact: "Has a personal record of 12 back-to-back meetings in a day.",
     socialNetworks: [
-      { name: "Linkedin", url: "https://www.linkedin.com/" },
+      { name: "LinkedIn", url: "https://www.linkedin.com/" },
       { name: "Facebook", url: "https://www.facebook.com/" },
       { name: "Instagram", url: "https://www.instagram.com/" },
     ],
@@ -56,7 +56,7 @@ const teamList: TeamProps[] = [
     something: "(Professional Button Pusher)",
     funFact: "Can code while blindfolded (but still needs Google).",
     socialNetworks: [
-      { name: "Linkedin", url: "https://www.linkedin.com/" },
+      { name: "LinkedIn", url: "https://www.linkedin.com/" },
       { name: "Instagram", url: "https://www.instagram.com/" },
     ],
   },
@@ -67,14 +67,14 @@ const teamList: TeamProps[] = [
     something: "(Only 25 Years Old)",
     funFact: "Knows 50 ways to make a cup of coffee, but can't fix a bug.",
     socialNetworks: [
-      { name: "Linkedin", url: "https://www.linkedin.com/" },
+      { name: "LinkedIn", url: "https://www.linkedin.com/" },
       { name: "Facebook", url: "https://www.facebook.com/" },
     ],
   },
 ];
 
 const socialIconMap: Record<string, JSX.Element> = {
-  Linkedin: <Linkedin size="20" />,
+  LinkedIn: <Linkedin size="20" />,
   Facebook: <Facebook size="20" />,
   Instagram: <Instagram size="20" />,
 };
@@ -136,7 +136,7 @@ export const Team = () => {
                     </a>
                   ))
                 ) : (
-                  <p className="text-muted-foreground">No social networks available (they're in witness protection)</p>
+                  <p className="text-muted-foreground">No social networks available (they&apos;re in witness protection)</p>
                 )}
               </div>
             </CardFooter>
