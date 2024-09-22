@@ -21,6 +21,7 @@ import { DashboardPieChart } from "./chart/pie-chart";
 import { DashboardRadarChart } from "./chart/radar-chart";
 import { initializeIncomes } from "@/actions/fetch-incomes";
 import { initializeExpenses } from "@/actions/fetch-expenses";
+import { useRouter } from "next/navigation";
 
 interface DashboardProps {
   transactions: Transaction[];
@@ -36,18 +37,18 @@ const Dashboard = ({
   cardInfo
 }: DashboardProps) => {
   const [show, setShow] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     const loadDataToLocalStorage = (key: string, data: any, message: string) => {
       const existingData = localStorage.getItem(key);
+
       if (!existingData) {
         localStorage.setItem(key, JSON.stringify(data));
-        console.log(message);
         return true;
-      } else {
-        console.log(`${key} already exists in localStorage.`);
-        return false;
       }
+
+      return false;
     };
 
     const loadTransactions = async () => {
@@ -73,7 +74,7 @@ const Dashboard = ({
 
       if (newTransactionsLoaded || newIncomesLoaded || newExpensesLoaded) {
         setShow(true);
-        window.location.reload();
+        router.replace("/dashboard");
       }
     };
 
@@ -128,9 +129,6 @@ const Dashboard = ({
         <CardHeader className="flex flex-row items-center">
           <div className="grid gap-2">
             <CardTitle>Overview</CardTitle>
-            <CardDescription>
-              A detailed overview of your most recent financial activities.
-            </CardDescription>
           </div>
 
         </CardHeader>

@@ -1,4 +1,5 @@
 import { paymentMethodsDetails, Transaction } from "@/types/transaction";
+import { User } from "@/types/user";
 import { ArrowDown, ArrowRight, TrendingDown, TrendingUp } from "lucide-react";
 
 export const transactions: Transaction[] = [
@@ -178,3 +179,27 @@ function transformPaymentMethods() {
     icon: details.icon
   }));
 }
+
+export const users: User[] = [
+  {
+    id: 1,
+    name: "Administrator",
+    username: "admin",
+    email: "admin@admin.com",
+    password: "admin",
+  },
+  {
+    id: 2,
+    name: "Mateus Pfeffer",
+    username: "mpfeffer",
+    email: "mpfeffer@minha.fag.edu.br",
+    password: "mateus123"
+  },
+  {
+    id: 3,
+    name: "Mateus Pfeffer",
+    username: "mpfeffer",
+    email: "mpfeffer@minha.fag.edu.br",
+    password: "mateus123"
+  }
+]
